@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+// Função que para calcular densidade e pib per capita
+void calcular_dados(int populacao, float area, float pib, float *densidade, float *pib_per_capita) {
+    *densidade = populacao / area;
+    // Para ajudar no cálculo do PIB per capita, multipliquei ele por bilhões como deveria ser
+    *pib_per_capita = (pib * 1000000000.0f) / populacao;
+}
+
 int main() {
     // Declaração de Variáveis 
     char estado[50];                    // Nome do Estado
@@ -42,6 +49,9 @@ int main() {
     scanf("%d", &pontos_turisticos);
     getchar();
 
+    // Cálculo dos dados
+    calcular_dados(populacao, area, pib, &densidade_demografica, &pib_per_capita);
+
     // Exibe os Dados da Carta 1
     printf("\n=== Dados da Primeira Carta ===\n");
     printf("Estado: %s", estado);
@@ -51,6 +61,8 @@ int main() {
     printf("Área: %.2f km²\n", area);
     printf("PIB: %.2f bilhões de reais\n", pib);
     printf("Pontos turísticos: %d\n", pontos_turisticos);
+    printf("Densidade Demográfica: %.2f habitantes/km²\n", densidade_demografica);
+    printf("PIB per Capita: %.2f reais\n", pib_per_capita);
 
     // Cadastro da Carta 2
     printf("\n=== Cadastre a Segunda Carta ===\n");
@@ -81,6 +93,9 @@ int main() {
     scanf("%d", &pontos_turisticos);
     getchar();
 
+    // Cálculo dos dados
+    calcular_dados(populacao, area, pib, &densidade_demografica, &pib_per_capita);
+
     // Exibe os Dados da Carta 2
     printf("\n=== Dados da Segunda Carta ===\n");
     printf("Estado: %s", estado);
@@ -90,6 +105,8 @@ int main() {
     printf("Área: %.2f km²\n", area);
     printf("PIB: %.2f bilhões de reais\n", pib);
     printf("Pontos turísticos: %d\n", pontos_turisticos);
+    printf("Densidade Demográfica: %.2f habitantes/km²\n", densidade_demografica);
+    printf("PIB per Capita: %.2f reais\n", pib_per_capita);
 
     return 0;
 }
