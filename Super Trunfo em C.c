@@ -12,40 +12,21 @@ float superPoder(unsigned long int populacao, float area, float pib, int pontos_
     return populacao + area + pib + pontos_turisticos + pib_per_capita + inverso_densidade;
 }
 
-// Função para comparar os valores das duas cartas 
-void comparar(unsigned long int populacao1, unsigned long int populacao2,
-              float area1, float area2,
-              float pib1, float pib2,
-              int pontos_turisticos1, int pontos_turisticos2,
-              float densidade1, float densidade2,
-              float super1, float super2) {
-    
-    printf("\n=== Comparação das Cartas ===\n");
+// Função para comparar apenas o atributo População
+void comparar_atributo_populacao(unsigned long int populacao1, unsigned long int populacao2, char cidade1[], char cidade2[]) {
+    printf("\n--- Comparação de Cartas (Atributo: População) ---\n");
+    printf("Carta 1 - %s: %lu habitantes\n", cidade1, populacao1);
+    printf("Carta 2 - %s: %lu habitantes\n", cidade2, populacao2);
 
-    printf("População: Carta %d venceu (%lu)\n", 
-           (populacao1 > populacao2) ? 1 : 2, 
-           (populacao1 > populacao2) ? populacao1 : populacao2);
-
-    printf("Área: Carta %d venceu (%.2f)\n", 
-           (area1 > area2) ? 1 : 2,
-           (area1 > area2) ? area1 : area2);
-
-    printf("PIB: Carta %d venceu (%.2f)\n", 
-           (pib1 > pib2) ? 1 : 2,
-           (pib1 > pib2) ? pib1 : pib2);
-
-    printf("Pontos Turísticos: Carta %d venceu (%d)\n", 
-           (pontos_turisticos1 > pontos_turisticos2) ? 1 : 2,
-           (pontos_turisticos1 > pontos_turisticos2) ? pontos_turisticos1 : pontos_turisticos2);
-
-    printf("Densidade Populacional: Carta %d venceu (%.2f)\n", 
-           (densidade1 < densidade2) ? 1 : 2,
-           (densidade1 < densidade2) ? densidade1 : densidade2);
-
-    printf("Super Poder: Carta %d venceu (%.2f)\n", 
-           (super1 > super2) ? 1 : 2,
-           (super1 > super2) ? super1 : super2);
+    if (populacao1 > populacao2) {
+        printf("Resultado: Carta 1 (%s) venceu!\n", cidade1);
+    } else if (populacao2 > populacao1) {
+        printf("Resultado: Carta 2 (%s) venceu!\n", cidade2);
+    } else {
+        printf("Resultado: Empate!\n");
+    }
 }
+
 
 // função principal 
 int main() {
@@ -91,10 +72,8 @@ int main() {
     calcular_dados(populacao2, area2, pib2, &densidade2, &pib_per_capita2);
     super2 = superPoder(populacao2, area2, pib2, pontos_turisticos2, densidade2, pib_per_capita2);
 
-    // Parte na qual é comparado os dados das cartas 1 e 2 para decidir a vencedora
-    comparar(populacao1, populacao2, area1, area2, pib1, pib2,
-             pontos_turisticos1, pontos_turisticos2, densidade1, densidade2,
-             super1, super2);
+    // Parte na qual é comparado o atributo de duas cartas (nesse caso vamos de população)
+    comparar_atributo_populacao(populacao1, populacao2, cidade1, cidade2);
 
     return 0;
 }
